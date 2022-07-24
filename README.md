@@ -67,4 +67,8 @@ Ensure that you've read through the extensions guidelines and follow the best pr
 * [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
 * [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
 
+### Functions
+
+* this extension can generate code snippet for cpp classes.
+* for example: constructor, copy semantics, move semantics, getter, setter, tostring ...
 **Enjoy!**
