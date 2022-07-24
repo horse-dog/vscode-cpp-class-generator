@@ -15,7 +15,7 @@
     "toString"
   ],
   "engines": {
-    "vscode": "^1.27.0"
+    "vscode": "^1.69.0"
   },
   "repository": {
     "type": "git",
