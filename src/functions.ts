@@ -230,7 +230,6 @@ function is_fundamental(typename: string) {
         'uint32_t', 'uint64_t', 'int8_t', 'int16_t', 'int32_t', 'int64_t']);
     let is_basic = true;
     for (let element of typename.split(/[ *]/)) {
-        console.log(element);
         if (!keys.has(element)) {
             is_basic = false;
             break;
