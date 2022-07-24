@@ -1,45 +1,68 @@
 {
-  "name": "cpp-generate-setters-getters",
-	"displayName": "C++ Code Generators",
-	"description": "C++ Setter Getter toString Constructor hashCode equals fluent code snippets generator",
-	"version": "0.0.1",
-	"engines": {
-		"vscode": "^1.69.0"
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-        "onCommand:cpp-generate-setters-getters.helloWorld"
-	],
-	"main": "./out/extension.js",
-	"contributes": {
-		"commands": [
-			{
-				"command": "cpp-generate-setters-getters.helloWorld",
-				"title": "Hello World"
-			}
-		]
-	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"watch": "tsc -watch -p ./",
-		"pretest": "npm run compile && npm run lint",
-		"lint": "eslint src --ext ts",
-		"test": "node ./out/test/runTest.js"
-	},
-	"devDependencies": {
-		"@types/vscode": "^1.69.0",
-		"@types/glob": "^7.2.0",
-		"@types/mocha": "^9.1.1",
-		"@types/node": "16.x",
-		"@typescript-eslint/eslint-plugin": "^5.30.0",
-		"@typescript-eslint/parser": "^5.30.0",
-		"eslint": "^8.18.0",
-		"glob": "^8.0.3",
-		"mocha": "^10.0.0",
-		"typescript": "^4.7.4",
-		"@vscode/test-electron": "^2.1.5"
-	}
+  "name": "cpp-class-generator",
+  "displayName": "C++ Class Generator",
+  "description": "C++ Setter Getter toString Constructor hashCode equals fluent code snippets generator",
+  "version": "0.0.1",
+  "author": "marjason",
+  "license": "MIT",
+  "keywords": [
+    "c++",
+    "cpp",
+    "cplusplus",
+    "setter",
+    "getter",
+    "constructor",
+    "toString"
+  ],
+  "engines": {
+    "vscode": "^1.27.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/horse-dog/vscode-cpp-code-generator"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets"
+  ],
+  "activationEvents": [
+    "onLanguage:cpp"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": [
+      {
+        "title": "cppClassGenerator",
+        "properties": {
+          "cppClassGenerator.generateInternal": {
+            "type": "boolean",
+            "default": true,
+            "description": "generate functions internal"
+          }
+        }
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.2.0",
+    "@types/lodash-es": "^4.17.6",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.69.0",
+    "@typescript-eslint/eslint-plugin": "^5.30.0",
+    "@typescript-eslint/parser": "^5.30.0",
+    "@vscode/test-electron": "^2.1.5",
+    "eslint": "^8.18.0",
+    "glob": "^8.0.3",
+    "mocha": "^10.0.0",
+    "typescript": "^4.7.4"
+  }
 }
