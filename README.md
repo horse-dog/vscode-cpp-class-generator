@@ -1,7 +1,3 @@
-# cpp-generate-setters-getters README
-
-This is the README for your extension "cpp-generate-setters-getters". After writing up a brief description, we recommend including the following sections.
-
 ## Features
 
 * this extension can generate code snippet for cpp classes.
