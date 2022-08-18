@@ -79,7 +79,7 @@ function parse_class(cls: string, content: string) {
 
 
 function parse_fields(cls: string) {
-    const keys = ['class', 'struct', 'public', 'protected', 'friend',
+    const keys = ['class', 'public', 'protected', 'friend',
         'private', 'template', 'typename', 'using', 'typedef'];
     const syms = ['', ' ', '{', '}', '};', '(', ')'];
     let fields: Field[] = [];
@@ -142,7 +142,7 @@ function parse_field(line: string) {
     items.forEach(item => {
         let has_add = false;
         if (need_merge) {
-            tmp[tmp.length - 1] += item;
+            tmp[tmp.length - 1] += ' ' + item;
             item = tmp[tmp.length - 1];
             has_add = true;
         }
@@ -393,7 +393,7 @@ function del_comments(content: string) {
             isStr = true;
         else if (!isCom && isStr && '\"' == str[i])
             isStr = false;
-        if (isCom && !isStr)
+        if (isCom && !isStr && str[i] != '\n')
             str[i] = ' ';
     }
     isCom = false, isStr = false;
