@@ -19,6 +19,7 @@ export interface IField {
     type: string;
     isStatic: boolean;
     isFundamental: boolean;
+    isArray: boolean;
 }
 
 export class Field implements IField {
@@ -26,7 +27,8 @@ export class Field implements IField {
         public name: string,
         public type: string,
         public isStatic: boolean,
-        public isFundamental: boolean
+        public isFundamental: boolean,
+        public isArray: boolean
     ) { }
 }
 

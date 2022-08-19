@@ -210,16 +210,16 @@ function parse_field(line: string) {
         if (i >= items.length) continue;
         if (items[i].length < 1) continue;
         if (items[i][0] == '*')
-            result.push(new Field(items[i].substring(1), typename + '*', is_static, true));
+            result.push(new Field(items[i].substring(1), typename + '*', is_static, true, false));
         else if (items[i].length > 1 && items[i].substring(0, 2) == '&&')
-            result.push(new Field(items[i].substring(2), typename + '&&', is_static, true));
+            result.push(new Field(items[i].substring(2), typename + '&&', is_static, true, false));
         else if (items[i][0] == '&')
-            result.push(new Field(items[i].substring(1), typename + '&', is_static, true));
+            result.push(new Field(items[i].substring(1), typename + '&', is_static, true, false));
         else if (items[i].indexOf('[') != -1)
             result.push(new Field(items[i].substring(0, items[i].indexOf('[')),
-                typename + '*', is_static, is_fundamental(typename)));
+                typename + '*', is_static, is_fundamental(typename), true));
         else
-            result.push(new Field(items[i], typename, is_static, is_fundamental(typename)));
+            result.push(new Field(items[i], typename, is_static, is_fundamental(typename), false));
     }
     return result;
 }
@@ -272,7 +272,7 @@ function parse_func_ptr(line: string) {
         else
             typename += item;
     });
-    return new Field(name, typename, is_static, true);
+    return new Field(name, typename, is_static, true, false);
 }
 
 function bracket_permit(line: string) {

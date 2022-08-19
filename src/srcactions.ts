@@ -592,7 +592,10 @@ function UpperCaseFirstLetter(str: string) {
 
 function generateGetter(field: Field) {
     let result = '\n\t';
-    if (field.isFundamental) result += field.type + ' ';
+    if (field.isArray) {
+        if (field.type.startsWith('const')) result += field.type + ' ';
+        else result += 'const ' + field.type + ' ';
+    } else if (field.isFundamental) result += field.type + ' ';
     else result += 'const ' + field.type + ' &';
     result += 'get' + UpperCaseFirstLetter(field.name) + '() const { return ';
     result += field.name + '; }\n';
@@ -602,11 +605,18 @@ function generateGetter(field: Field) {
 function generateGetterOutSide(field: Field, className: string) {
     let result1 = '\t';
     let result = '\n';
-    if (field.isFundamental) {
+    if (field.isArray) {
+        if (field.type.startsWith('const')) {
+            result1 += field.type + ' ';
+            result += field.type + ' ' + className + '::';
+        } else {
+            result1 += 'const ' + field.type + ' ';
+            result += 'const ' + field.type + ' ' + className + '::';
+        }
+    } else if (field.isFundamental) {
         result1 += field.type + ' ';
         result += field.type + ' ' + className + '::';
-    }
-    else {
+    } else {
         result1 += 'const ' + field.type + ' &';
         result += 'const ' + field.type + ' &' + className + '::';
     }
