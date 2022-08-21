@@ -8,7 +8,7 @@
 * None
 
 ## Examples
-![Default](/images/example.gif)
+![Default](./images/example.gif)
 
 ## Extension Settings
 
