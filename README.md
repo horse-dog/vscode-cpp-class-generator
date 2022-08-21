@@ -8,7 +8,7 @@
 * None
 
 ## Examples
-![Default](./images/example.gif)
+![Default](https://github.com/horse-dog/vscode-cpp-class-generator/images/example.gif)
 
 ## Extension Settings
 
