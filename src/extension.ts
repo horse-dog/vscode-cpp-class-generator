@@ -5,6 +5,7 @@ import * as vscode from 'vscode';
 
 import { getSelectedCppClass } from './functions';
 import { CppCodeActionCmdList } from './actions';
+import { generateToString, generateAll } from './srcactions';
 
 export function activate(context: ExtensionContext) {
 	CppCodeActionCmdList.forEach(cmd => {
@@ -22,7 +23,7 @@ export function activate(context: ExtensionContext) {
 
 export function deactivate() { }
 
-function runner(fun: any) {
+function runner(fun: Function) {
 	let editor = window.activeTextEditor!;
 	let generateInternal = vscode.workspace.getConfiguration().get('cppClassGenerator.generateInternal');
 	getSelectedCppClass(editor).then(async cppClass => {
@@ -34,9 +35,24 @@ function runner(fun: any) {
 			editor.insertSnippet(new SnippetString(contents[1]), new Position(cppClass.end + 1, 0));
 			editor.insertSnippet(new SnippetString('\n public:\n' + contents[0]), new Position(cppClass.end, 0));	
 		}
+		if (fun == generateAll || fun == generateToString) {
+			if (!hasInclude(editor.document.getText(), 'sstream')) {
+				editor.insertSnippet(new SnippetString('#include <sstream>\n'), new Position(1, 0));
+			}
+		}
 	}).catch(err => {
 		window.showErrorMessage(err);
 	})
+}
+
+function hasInclude(content: string, include: string) {
+	let lines = content.split('\n');
+	for (let i = 0; i < lines.length; i++) {
+		let line = lines[i].trim();
+		if (line.startsWith('#include') && line.includes(include))
+		return true;
+	}
+	return false;
 }
 
 export class CppSourceActions implements vscode.CodeActionProvider {

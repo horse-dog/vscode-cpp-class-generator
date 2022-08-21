@@ -70,7 +70,7 @@ export async function generateConstructor(cppClass: CppClass, internal: boolean,
         addstr1 = addstr1.substring(0, addstr1.length - 2);
         addstr2 = addstr2.substring(0, addstr2.length - 2);
         content1 += '(' + addstr1 + ');\n';
-        content2 += '(' + addstr1 + ')' + addstr2 + '{};\n';
+        content2 += '(' + addstr1 + ')' + addstr2 + '{}\n';
         return [content1, content2];
     }
 }
@@ -78,7 +78,7 @@ export async function generateConstructor(cppClass: CppClass, internal: boolean,
 export async function generateDestructor(cppClass: CppClass, internal: boolean, flag: boolean): Promise<string[]> {
     if (internal) return ['\n\t~' + cppClass.name + '(){};\n'];
     let content1 = '\t~' + cppClass.name + '();\n';
-    let content2 = '\n' + cppClass.name + '::~' + cppClass.name + '(){};\n';
+    let content2 = '\n' + cppClass.name + '::~' + cppClass.name + '(){}\n';
     return [content1, content2];
 }
 
@@ -130,7 +130,7 @@ export async function generateCopySemantic(cppClass: CppClass, internal: boolean
                 addstr += item + '(rhs.' + item + '), ';
             });
             addstr = addstr.substring(0, addstr.length - 2);
-            result12 = result12 + addstr + '{};\n';
+            result12 = result12 + addstr + '{}\n';
         }
         return [result11 + result21, result12 + result22];
     }
@@ -184,7 +184,7 @@ export async function generateMoveSemantic(cppClass: CppClass, internal: boolean
                 addstr += item + '(std::move(rhs.' + item + ')), ';
             });
             addstr = addstr.substring(0, addstr.length - 2);
-            result12 = result12 + addstr + '{};\n';
+            result12 = result12 + addstr + '{}\n';
         }
         return [result11 + result21, result12 + result22];
     }

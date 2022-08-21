@@ -7,6 +7,9 @@
 
 * None
 
+## Examples
+![Default](/images/example.gif)
+
 ## Extension Settings
 
 * `cppClassGenerator.generateInternal`: generate code inside or outside the class body
